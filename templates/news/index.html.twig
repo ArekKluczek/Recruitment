@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container news mb-2">
+        <div class="row g-5">
+            {% for new in news %}
+                {% if loop.first %}
+                    <div class="col-12">
+                        <div class="p-4 mt-3 p-md-5 mb-4 text-white rounded bg-dark">
+                            <div class="d-flex">
+                                <h2 class="display-4 fst-italic">{{ new.title }}</h2>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_news_edit', {'id': new.id}) }}"><i class="fas fa-edit"></i></a>
+                                {% endif %}
+                            </div>
+                            <p class="lead my-3">{{ new.text }}</p>
+                            <p class="lead mb-0"><a href="{{ path('app_news_show', {'id': new.id}) }}" class="text-white">read
+                                    more...</a></p>
+                        </div>
+                    </div>
+                {% else %}
+                    {% if loop.index == 2 %}
+                        <div class="col-md-8">
+                            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                                Latest publications
+                            </h3>
+                        </div>
+                    {% endif %}
+                    <div class="col-md-8 border-bottom mb-2">
+                        <article class="blog-post">
+                            <div class="title-section d-flex justify-content-between">
+                                <h2 class="blog-post-title">{{ new.title }}</h2>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_news_edit', {'id': new.id}) }}"><i class="fas fa-edit"></i></a>
+                                {% endif %}
+                            </div>
+                            <p class="blog-post-meta d-flex justify-content-end text-secondary">{{ new.creationDate ? new.creationDate|date('Y-m-d') : '' }} by
+                                {% for author in new.authors %}
+                                    {{ author.name }}
+                                {% endfor %}
+                            </p>
+                            <p>{{ new.text }}</p>
+                            <a href="{{ path('app_news_show', {'id': new.id}) }}" class="pb-2">read more...</a>
+                        </article>
+                    </div>
+                {% endif %}
+                {% if loop.index == 2 %}
+                    <div class="col-md-4">
+                        <div class="position-sticky" style="top: 2rem;">
+                            <div class="p-4 mb-3 bg-light rounded">
+                                <h4 class="fst-italic">About</h4>
+                                <p class="mb-0">
+                                    We invite you to discover our carefully curated articles that offer an in-depth look at the latest trends and innovations
+                                    in the recruitment industry. Each entry is the result of our passion for sharing knowledge and practical advice that will help both employers and
+                                    job seekers understand the dynamics of the modern labor market.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+    {% endfor %}
+{% endblock %}

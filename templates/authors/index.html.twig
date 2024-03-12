@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authors index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+                <tr>
+                    <td>{{ author.id }}</td>
+                    <td>{{ author.name }}</td>
+                    <td>
+                        <a href="{{ path('app_authors_edit', {'id': author.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
