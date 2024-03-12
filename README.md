@@ -4,10 +4,22 @@ This document outlines the steps required for setting up the project, building, 
 Prerequisites
 Before building the project, you need to have ddev installed on your system. ddev is an open-source tool that makes it simple to get local PHP development environments up and running within minutes. For installation instructions, visit the ddev documentation https://ddev.readthedocs.io/en/latest/users/install/ddev-installation/.
 
-Building the Project
+If you are working on Windows, please download Docker Desktop before initialization
+
+Steps for linux:
 To build the project, follow these steps:
 1) Initialize containers with ddev start
 2) Run custom script: ddev init.sh
+
+Steps for Windows:
+To build the project, follow these steps:
+1) Initialize containers with ddev start
+2) Type these commands into terminal:
+3) ddev start
+4) ddev yarn install
+5) ddev yarn encore dev
+6) ddev php bin/console doctrine:migrations:migrate
+7) ddev import-db -> when it ask for db type "db.sql"
 
 Accessing the Application
 After the setup is complete, you can access the application in your web browser:
