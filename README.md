@@ -19,10 +19,11 @@ Start the containers using the command:
 For Windows Users:
 Please follow these instructions in your terminal to build the project:
 1) ddev start
-2) ddev yarn install
-3) ddev yarn encore dev
-4) ddev php bin/console doctrine:migrations:migrate
-5) ddev import-db -> Import the database when prompted; type "db.sql" as the database name
+2) ddev composer install
+3) ddev yarn install
+4) ddev yarn encore dev
+5) ddev php bin/console doctrine:migrations:migrate
+6) ddev import-db -> Import the database when prompted; type "db.sql" as the database name
 
 Accessing the Application
 After completing the setup, you can view the homepage and access the application:
